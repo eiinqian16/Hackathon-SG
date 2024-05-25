@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Recommendations Based on MBTI</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico|Raleway:400,700&display=swap">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #faf3e0; 
+        }
+
+        header {
+            padding: 10px 0;
+            background-color: #c5a880; 
+            color: #fff; 
+            text-align: center;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .welcome-message h1 {
+            font-family: 'Candlefish';
+            color: #6c5735; 
+            font-size: 36px;
+        }
+
+        .welcome-message p {
+            font-family: 'Raleway', sans-serif;
+            color: #6c5735; 
+            font-size: 18px;
+        }
+
+        .bulletin-board {
+            padding: 20px;
+        }
+
+        .mbti-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .mbti-row {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .mbti-type {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            width: 120px;
+            text-align: center;
+        }
+
+        .mbti-type img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f5ebdc; 
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 350px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: left;
+        }
+
+        .popup h2 {
+            color: #6c5735; 
+        }
+
+        .popup .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 500;
+        }
+
+        .action-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .action-links a {
+            display: inline-block;
+            margin: 5px 10px;
+            padding: 10px 20px;
+            background-color: #faf3e0; 
+            color: #6c5735; 
+            text-decoration: none;
+            border-radius: 5px;
+            border: 1px solid #6c5735; 
+        }
+
+        .action-links a:hover {
+            background-color: #e6d4b1; 
+        }
+
+        .bulletin-item {
+            display: flex;
+            align-items: center;
+            background-color: #fff; 
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .bulletin-item img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 15px;
+        }
+
+        .bulletin-details h3 {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 16px; 
+            color: #6c5735; 
+        }
+
+        .divider {
+            border-bottom: 1px solid #ccc;
+            margin: 10px 0;
+        }
+
+        /* Additional CSS for banner and menu color changes */
+        .bg-brown {
+            background-color: #c5a880; 
+        }
+
+        .navbar-nav .nav-link {
+            color: #faf3e0; 
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #e6d4b1; 
+        }
+
+        .dropdown-menu {
+            background-color: #c5a880; 
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: #faf3e0; 
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #e6d4b1; 
+            color: #fff; 
+        }
+
+        .small-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f5ebdc; 
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 250px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar navbar-expand-lg navbar-dark bg-brown">
+    <a class="navbar-brand" href="#">VOLMATCH</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="Homepage.html">Home Page</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="activities.html">Activities</a> <!-- Updated href -->
+            </li>
+        </ul>
+    </div>
+</header>
+
+<div class="welcome-message">
+    <h1>Welcome to the Volunteer Recommendations Platform</h1>
+    <p>Click on your MBTI type to see recommended volunteer activities for you.</p>
+</div>
+
+<main class="container bulletin-board">
+    <div class="mbti-container">
+        <div class="mbti-row">
+            <div class="mbti-type" data-type="enfp">
+                <img src="enfp.png" alt="enfp">
+                <div>ENFP</div>
+            </div>
+            <div class="mbti-type" data-type="infj">
+                <img src="infj.png" alt="infj">
+                <div>INFJ</div>
+            </div>
+            <div class="mbti-type" data-type="enfj">
+                <img src="enfj.png" alt="enfj">
+                <div>ENFJ</div>
+            </div>
+            <div class="mbti-type" data-type="infp">
+                <img src="infp.png" alt="infp">
+                <div>INFP</div>
+            </div>
+        </div>
+        <div class="mbti-row">
+            <div class="mbti-type" data-type="istp">
+                <img src="istp.png" alt="istp">
+                <div>ISTP</div>
+            </div>
+            <div class="mbti-type" data-type="isfp">
+                <img src="isfp.png" alt="isfp">
+                <div>ISFP</div>
+            </div>
+            <div class="mbti-type" data-type="esfp">
+                <img src="esfp.png" alt="esfp">
+                <div>ESFP</div>
+            </div>
+            <div class="mbti-type" data-type="estp">
+                <img src="estp.png" alt="estp">
+                <div>ESTP</div>
+            </div>
+        </div>
+        <div class="mbti-row">
+            <div class="mbti-type" data-type="estj">
+                <img src="estj.png" alt="estj">
+                <div>ESTJ</div>
+            </div>
+            <div class="mbti-type" data-type="isfj">
+                <img src="isfj.png" alt="isfj">
+                <div>ISFJ</div>
+            </div>
+            <div class="mbti-type" data-type="esfj">
+                <img src="esfj.png" alt="esfj">
+                <div>ESFJ</div>
+            </div>
+            <div class="mbti-type" data-type="istj">
+                <img src="istj.png" alt="istj">
+                <div>ISTJ</div>
+            </div>
+        </div>
+        <div class="mbti-row">
+            <div class="mbti-type" data-type="intj">
+                <img src="intj.png" alt="intj">
+                <div>INTJ</div>
+            </div>
+            <div class="mbti-type" data-type="entp">
+                <img src="entp.png" alt="entp">
+                <div>ENTP</div>
+            </div>
+            <div class="mbti-type" data-type="entj">
+                <img src="entj.png" alt="entj">
+                <div>ENTJ</div>
+            </div>
+            <div class="mbti-type" data-type="intp">
+                <img src="intp.png" alt="intp">
+                <div>INTP</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer bg-brown text-white">
+    <p>&copy; 2024 VOLMATCH</p>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+
+<div class="popup" id="popup">
+    <span class="close" id="closePopup">&times;</span>
+    <h2 id="mbti-title"></h2>
+    <p>Your character is <strong id="mbti-character"></strong>.</p>
+    <div class="divider"></div>
+    <p>Your suitable volunteer activities are:</p>
+    <div id="mbti-desc"></div>
+    <div class="action-links">
+        <a href="#" id="customizeLink">Ignore and continue browsing</a>
+    </div>
+</div>
+
+<div class="small-popup" id="smallPopup">
+    <p>Sure! Bringing you to our event page...</p>
+</div>
+
+<script>
+    const recommendations = {
+        'enfp': {
+            character: 'bold',
+            activities: [
+                { title: 'Old Folks Home', img: 'old-folks-home.jpg', link: 'community-support.html' },
+                { title: 'Orphanage', img: 'orphanage.jpg', link: 'community-support.html' }
+            ]
+        },
+        'infj': {
+            character: 'empathetic and insightful',
+            activities: [
+                { title: 'Crisis Hotline', img: 'crisis-hotline.png', link: 'communication.html' },
+                { title: 'Mentoring Youth', img: 'mentoring-youth.jpg', link: 'communication.html' }
+            ]
+        },
+        'intj': {
+            character: 'strategic and organized',
+            activities: [
+                { title: 'Planning Community Events', img: 'community-events.png', link: 'planning.html' },
+                { title: 'Project Management', img: 'project-management.jpg', link: 'planning.html' }
+            ]
+        },
+        'istj': {
+            character: 'reliable and practical',
+            activities: [
+                { title: 'Outdoor Clean-up', img: 'clean-up.jpg', link: 'physical-labour.html' },
+                { title: 'Sports Coaching', img: 'sports-coaching.jpg', link: 'physical-labour.html' }
+            ]
+        },
+        'entp': {
+            character: 'innovative and resourceful',
+            activities: [
+                { title: 'Crisis Hotline', img: 'crisis-hotline.png', link: 'communication.html' },
+                { title: 'Mentoring Youth', img: 'mentoring-youth.jpg', link: 'communication.html' }
+            ]
+        },
+        'entj': {
+            character: 'a natural leader',
+            activities: [
+                { title: 'Old Folks Home', img: 'old-folks-home.jpg', link: 'community-support.html' },
+                { title: 'Orphanage', img: 'orphanage.jpg', link: 'community-support.html' }
+            ]
+        },
+        'esfp': {
+            character: 'outgoing and spontaneous',
+            activities: [
+                { title: 'Entertainment Activities', img: 'entertainment.jpg', link: 'community-support.html' },
+                { title: 'Hospital Volunteering', img: 'hospital.png', link: 'community-support.html' }
+            ]
+        },
+        'estp': {
+            character: 'energetic and action-oriented',
+            activities: [
+                { title: 'Outdoor Clean-up', img: 'clean-up.jpg', link: 'physical-labour.html' },
+                { title: 'Sports Coaching', img: 'sports-coaching.jpg', link: 'physical-labour.html' }
+            ]
+        },
+        'isfp': {
+            character: 'gentle and caring',
+            activities: [
+                { title: 'Animal Welfare', img: 'animal-shelter.png', link: 'animal-welfare.html' },
+                { title: 'Orphanage', img: 'orphanage.jpg', link: 'community-support.html' }
+            ]
+        },
+        'istp': {
+            character: 'practical and observant',
+            activities: [
+                { title: 'Animal Welfare', img: 'animal-shelter.png', link: 'animal-welfare.html' },
+                { title: 'Sports Coaching', img: 'sports-coaching.jpg', link: 'physical-labour.html' }
+            ]
+        },
+        'infp': {
+            character: 'idealistic and creative',
+            activities: [
+                { title: 'Healthcare Support', img: 'healthcare.png', link: 'mental-health.html' },
+                { title: 'Community Service', img: 'community-service.jpg', link: 'mental-health.html' }
+            ]
+        },
+        'isfj': {
+            character: 'compassionate and dedicated',
+            activities: [
+                { title: 'Healthcare Support', img: 'healthcare.png', link: 'mental-health.html' },
+                { title: 'Community Service', img: 'community-service.jpg', link: 'mental-health.html' }
+            ]
+        },
+        'estj': {
+            character: 'organized and efficient',
+            activities: [
+                { title: 'Project Management', img: 'project-management.jpg', link: 'planning.html' },
+                { title: 'Planning Events', img: 'community-events.png', link: 'planning.html' }
+            ]
+        },
+        'enfj': {
+            character: 'charismatic and altruistic',
+            activities: [
+                { title: 'Mentoring Youth', img: 'mentoring-youth.jpg', link: 'communication.html' },
+                { title: 'Community Service', img: 'community-service.jpg', link: 'mental-health.html' }
+            ]
+        },
+        'intp': {
+            character: 'analytical and innovative',
+            activities: [
+                { title: 'Project Management', img: 'project-management.jpg', link: 'planning.html' },
+                { title: 'Planning Events', img: 'community-events.png', link: 'planning.html' }
+            ]
+        },
+        'esfj': {
+            character: 'supportive and outgoing',
+            activities: [
+            { title: 'Animal Welfare', img: 'animal-shelter.png', link: 'animal-welfare.html' },
+                { title: 'Sports Coaching', img: 'sports-coaching.jpg', link: 'physical-labour.html' }
+            ]
+        }
+    };
+
+    document.querySelectorAll('.mbti-type').forEach(element => {
+        element.addEventListener('click', () => {
+            const mbtiType = element.getAttribute('data-type');
+            const mbtiData = recommendations[mbtiType];
+
+            document.getElementById('mbti-title').innerText = mbtiType.toUpperCase();
+            document.getElementById('mbti-character').innerText = mbtiData.character;
+            
+            const activitiesContainer = document.getElementById('mbti-desc');
+            activitiesContainer.innerHTML = ''; // Clear previous activities
+
+            mbtiData.activities.forEach(activity => {
+                const activityElement = document.createElement('a');
+                activityElement.className = 'bulletin-item';
+                activityElement.href = activity.link;
+                activityElement.target = '_blank';
+                activityElement.innerHTML = `
+                    <img src="${activity.img}" alt="${activity.title}">
+                    <div class="bulletin-details">
+                        <h3>${activity.title}</h3>
+                    </div>
+                `;
+                activitiesContainer.appendChild(activityElement);
+            });
+
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('popup').style.display = 'block';
+        });
+    });
+
+    document.getElementById('closePopup').addEventListener('click', () => {
+        document.getElementById('popup').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    });
+
+    document.getElementById('customizeLink').addEventListener('click', (event) => {
+        event.preventDefault();
+        document.getElementById('smallPopup').style.display = 'block';
+        setTimeout(() => {
+            window.location.href = 'activities.html';
+        }, 2000); // 2-second delay before redirect
+    });
+</script>
+</body>
+</html>

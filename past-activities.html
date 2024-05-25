@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Activities</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .bulletin-board {
+            padding: 20px;
+        }
+        .bulletin-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .bulletin-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .bulletin-details {
+            margin-top: 15px;
+        }
+        .bulletin-details h3 {
+            margin-top: 0;
+        }
+        .footer {
+            background-color: #c5a880; /* brown */
+            color: #fff; /* white */
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Additional CSS for banner and menu color changes */
+        .bg-brown {
+            background-color: #c5a880; /* brown */
+        }
+
+        .navbar-nav .nav-link {
+            color: #faf3e0; /* beige */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #e6d4b1; /* lighter beige */
+        }
+
+        .dropdown-menu {
+            background-color: #c5a880; /* brown */
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: #faf3e0; /* beige */
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #e6d4b1; /* lighter beige */
+            color: #fff; /* white */
+        }
+        .feedback-button, #submit-btn {
+            background-color: #c5a880;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            border-radius: 16px;
+            cursor: pointer;
+        }
+        #feedback-form{
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 400px;
+            height: 300px;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-bottom: 20px;
+            background-color: #faf3e0;
+        }
+        .rating {
+            display: flex;
+            align-items: center;
+        }
+        .rating label {
+            color: #ccc; /* default grey star color */
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .rating input[type="radio"] {
+            display: none; /* hide the radio buttons */
+        }
+        .rating label:hover,
+        .rating label:hover ~ label,
+        .rating input[type="radio"]:checked ~ label {
+            color: #ffa500; /* color stars on hover and when checked */
+        }
+        .feedback {
+            margin-top: 20px;
+            width: 100%;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            resize: none; /* prevent resizing */
+        }
+        
+    </style>
+</head>
+<body>
+
+<header class="navbar navbar-expand-lg navbar-dark bg-brown">
+    <a class="navbar-brand" href="#">VOLMATCH- Past Activities</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="Homepage.html">Homepage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="activities.html">Activities</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                    <a class="dropdown-item" href="view-profile.html">View Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="Homepage.html">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<main class="container bulletin-board">
+    <div class="row">
+        <div class="bulletin-item col-12">
+            <img src="animal-shelter-1.jpg" alt="Past Activities 1">
+            <div class="bulletin-details">
+                <h3>Care for Abandoned Pets</h3>
+                <p><strong>Organization:</strong> Animal Rescue Group</p>
+                <p><strong>Date:</strong> June 20, 2024</p>
+                <p><strong>Contact:</strong> <a href="mailto:volunteer@animalrescue.org">volunteer@animalrescue.org</a></p>
+                <button class="feedback-button" id="feedback1" onclick="feedback(this)">Add Feedback</button>
+            </div>
+        </div>
+        <div class="bulletin-item col-12">
+            <img src="animal-shelter-2.jpg" alt="Past Activities 2">
+            <div class="bulletin-details">
+                <h3>Weekend Pet Care</h3>
+                <p><strong>Organization:</strong> Pet Helpers</p>
+                <p><strong>Date:</strong> July 5, 2024</p>
+                <p><strong>Location:</strong> Eastside Pet Haven</p>
+                <p><strong>Contact:</strong> <a href="mailto:info@pethelpers.org">info@pethelpers.org</a></p>
+                <button class="feedback-button" id="feedback2" onclick="feedback(this)">Add Feedback</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="feedback-form">
+        <span class="close" id="closeForm" onclick="close_form('feedback-form')">&times;</span><br>
+        <div class="rating">
+            <p>Rating: </p>
+            <input type="radio" id="star1" name="rating" value="1"><label for="star1"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star2" name="rating" value="2"><label for="star2"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star3" name="rating" value="3"><label for="star3"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star4" name="rating" value="4"><label for="star4"><i class="fas fa-star"></i></label>
+            <input type="radio" id="star5" name="rating" value="5"><label for="star5"><i class="fas fa-star"></i></label>
+        </div>
+        <textarea class="feedback" placeholder="Enter your feedback here..." required></textarea>
+
+        <div style="text-align: center;"><button id="submit-btn" onclick="submitFeedback()">Submit</button></div>
+
+    </div>
+</main>
+
+<footer class="footer bg-brown text-white">
+    <p>&copy; 2024 VOLMATCH</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script> <!-- Font Awesome JavaScript -->
+<script>
+    var currentButton;
+
+    function feedback(button){
+        console.log(button);
+        currentButton = button;
+        document.getElementById('feedback-form').style.display = "block";
+    }
+
+    function close_form(form_id){
+        document.getElementById(form_id).style.display = "none";
+    }
+
+    function submitFeedback(){
+        close_form('feedback-form');
+        if (currentButton) {
+            currentButton.disabled = true;
+            currentButton.innerText = "Feedback Submitted";
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planning Activities</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Candlefish|Raleway:400,700&display=swap">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .bulletin-board {
+            padding: 20px;
+        }
+        .bulletin-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .bulletin-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .bulletin-details {
+            margin-top: 15px;
+        }
+        .bulletin-details h3 {
+            margin-top: 0;
+        }
+        .footer {
+            background-color: #c5a880; /* brown */
+            color: #fff; /* white */
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Additional CSS for banner and menu color changes */
+        .bg-brown {
+            background-color: #c5a880; /* brown */
+        }
+
+        .navbar-nav .nav-link {
+            color: #faf3e0; /* beige */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #e6d4b1; /* lighter beige */
+        }
+
+        .dropdown-menu {
+            background-color: #c5a880; /* brown */
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: #faf3e0; /* beige */
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #e6d4b1; /* lighter beige */
+            color: #fff; /* white */
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 40%;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-content p {
+            font-family: 'Candlefish', cursive;
+            font-size: 24px;
+            color: #6c5735; /* dark brown */
+        }
+
+        .modal-content .btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .modal-content button {
+            background-color: #c5a880;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-family: 'Raleway', sans-serif;
+            cursor: pointer;
+            width: 150px; /* Same width as the "View your ticket" text */
+        }
+
+        .modal-content button:hover {
+            background-color: #0056b3;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+
+        .header-container img {
+            height: 50px; /* Adjust as needed */
+        }
+
+        .header-title {
+            font-family: 'Candlefish', cursive;
+            font-size: 24px;
+            color: #faf3e0;
+            margin: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<header class="navbar navbar-expand-lg navbar-dark bg-brown">
+    <div class="header-container">
+        <a class="navbar-brand" href="#">
+            <img src="logo.png" alt="Logo">
+            <span class="header-title">VOLMATCH</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Homepage.html">Home Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="activities.html">Activities</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="view-profile.html">View Profile</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="Homepage.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<main class="container bulletin-board">
+    <div class="row">
+        <div class="col-md-4 col-lg-4">
+            <div class="bulletin-item">
+                <img src="planning-1.jpg" alt="Planning Event 1">
+                <div class="bulletin-details">
+                    <h3>Project Management</h3>
+                    <p><strong>Organization:</strong> Plan It</p>
+                    <p><strong>Date:</strong> July 1, 2024</p>
+                    <p><strong>Location:</strong> Downtown Office</p>
+                    <p>Help manage and organize various community projects to ensure their successful completion.</p>
+                    <p><strong>Contact:</strong> <a href="mailto:info@planit.org">info@planit.org</a></p>
+                    <p><strong>point:</strong> 5</p>
+                    <button class="register-button" data-event="Project Management">Register</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-lg-4">
+            <div class="bulletin-item">
+                <img src="planning-2.jpg" alt="Planning Event 2">
+                <div class="bulletin-details">
+                    <h3>Planning Events</h3>
+                    <p><strong>Organization:</strong> Event Planners</p>
+                    <p><strong>Date:</strong> July 15, 2024</p>
+                    <p><strong>Location:</strong> Event Hall</p>
+                    <p>Assist in planning and organizing various events for the community.</p>
+                    <p><strong>Contact:</strong> <a href="mailto:info@eventplanners.org">info@eventplanners.org</a></p>
+                    <p><strong>Point:</strong> 5</p>
+                    <button class="register-button" data-event="Planning Events">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="footer bg-brown text-white">
+    <p>&copy; 2024 VOLMATCH</p>
+</footer>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="modal-text"></p>
+    <div class="btn-container">
+        <button id="view-ticket-button">View your ticket</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.querySelectorAll('.register-button').forEach(button => {
+        button.addEventListener('click', function() {
+            const eventName = this.getAttribute('data-event');
+            document.getElementById('modal-text').innerText = `You have successfully registered for ${eventName}!`;
+            document.getElementById('myModal').style.display = 'block';
+        });
+    });
+
+    document.querySelector('.close').addEventListener('click', function() {
+        document.getElementById('myModal').style.display = 'none';
+    });
+
+    window.onclick = function(event) {
+        event.preventDefault();
+        if (event.target == document.getElementById('myModal')) {
+            document.getElementById('myModal').style.display = 'none';
+        }
+    }
+
+    document.getElementById('view-ticket-button').addEventListener('click', function() {
+        window.location.href = 'ticket.html'; // Change 'ticket.html' to the actual ticket page URL
+    });
+</script>
+</body>
+</html>

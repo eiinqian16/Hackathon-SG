@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volunteer Opportunities</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css"> </head>
+  <style>
+    /* Additional CSS for banner and menu color changes */
+    .bg-brown {
+        background-color: #c5a880; /* brown */
+    }
+
+    .navbar-nav .nav-link {
+        color: #faf3e0; /* beige */
+    }
+
+    .navbar-nav .nav-link:hover {
+        color: #e6d4b1; /* lighter beige */
+    }
+
+    .dropdown-menu {
+        background-color: #c5a880; /* brown */
+    }
+
+    .dropdown-menu .dropdown-item {
+        color: #faf3e0; /* beige */
+    }
+
+    .dropdown-menu .dropdown-item:hover {
+        background-color: #e6d4b1; /* lighter beige */
+        color: #fff; /* white */
+    }
+
+    .centered-text {
+        text-align: center;
+        font-family: cursive;
+    }
+
+    .nav-item {
+        font-family: cursive;
+    }
+
+    figcaption {
+        font-size: 40; 
+        font-family: cursive;
+    }
+
+    .image-container {
+        display: flex;
+        padding: 80px;
+        justify-content: space-between;  /* Distribute images evenly */
+    }
+
+    figure {
+        width: 33%;  /* Adjust width as needed (ensure it adds up to 100%) */
+        margin: 5px;  /* Optional margin between images */
+    }
+
+    article {
+        background-color: #c5a880;  /* Adjust color as needed */
+        padding: 50px;  /* Add padding to separate content from the edge of the background */
+    }
+
+    .signup-button {
+        background-color: #c5a880;  /* Adjust background color as needed */
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;  /* Add border radius for rounded corners */
+        cursor: pointer;  /* Indicate clickable element */
+        font-size: 16px;  /* Adjust font size as needed */
+    }
+
+    .signup-button:hover {  /* Optional hover effect */
+        background-color: #0069d9;  /* Adjust hover color as needed */
+    }
+
+    .about-us {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif; 
+        font-size: 30;
+        text-align: center;
+    }
+
+    .rounded-circle {
+        width: 100px;
+        height: auto;
+        padding: 10px;
+    }
+    </style>
+<body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-brown">
+        <a class="navbar-brand" href="#" style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;">
+            <img src="logo.jpg" class="rounded-circle" alt="LOGO">VOLMATCH</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#about-us">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#activities">Activities</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Log In / Sign Up
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="login.html">Log In</a>
+                        <a class="dropdown-item" href="signup.html">Sign Up</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>    
+  <header>
+    <br>
+    <br>
+    <div class="centered-text">
+        <h1  style="font-size: 60px; font-weight: bold;">Make a Difference !</h1>
+    </div>
+  </header>
+
+  <main>
+    <br>
+    <section class="centered-text">
+      <p style="font-size: large; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif ; letter-spacing: 5px; font-size: 30;">Find your passion and give back to your community.</p>
+      <p style="font-size: large; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif ; letter-spacing: 5px; font-size: 30;">Explore a variety of volunteer opportunities and make a real impact.</p>
+    <br>
+    </section>
+    <img src="hp3.jpg" alt="Stretched Image" style=" width: 100%; height:auto; background-size: cover;">
+    <br>
+    <br>
+    <br>
+    <section class="centered-text">
+      <h2 id="activities" style="padding-bottom:-150px; font-weight: bold;">Volunteer Categories</h2>
+        <div class="image-container">
+            <figure>
+                <img src="animal-shelter-2.jpg" alt="Image 1" style= "height:300px; width:400px;">
+                <figcaption> <h4 style="padding-top: 25px;">Animal Welfare</h4></figcaption>
+            </figure>
+            <figure>
+                <img src="mental-health-2.png" alt="Image 1"  style= "height:300px; width:400px;">
+                <figcaption> <h4 style="padding-top: 25px;">Mental Health</h4></figcaption>
+            </figure>
+            <figure>
+                <img src="project-management.jpg" alt="Image 1"  style= "height:300px; width:400px;">
+                <figcaption> <h4 style="padding-top: 25px;">Planning</h4></figcaption>
+            </figure>
+        </div>
+        <div class="image-container">
+            <figure>
+                <img src="mentoring-youth.jpg" alt="Image 1"  style= "height:300px; width:400px;">
+                <figcaption> <h4 style="padding-top: 25px;">Communication</h4></figcaption>
+            </figure>
+            <figure>
+                <img src="sports-coaching.jpg" alt="Image 1"  style= "height:300px; width:400px;">
+                <figcaption> <h4 style="padding-top: 25px;">Physical Labour</h4></figcaption>
+            </figure>
+            <figure>
+                <img src="old-folks-home.jpg" alt="Image 1"  style= "height:300px; width:400px;">
+                <figcaption> <h4 style="padding-top: 25px;">Community Support</h4></figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <h2 id="about-us" style="font-weight: bold; text-align: center; font-family: cursive;">About VOLMATCH</h2>
+    <br>
+    <section class="about-us">
+        <p>Volmatch is a platform that connects passionate individuals with meaningful volunteer opportunities in their communities by matching them with their personalities.</p>
+        <p>Our platform connects individuals with volunteer opportunities by matching them with their MBTI personalities.</p>
+        <img src="logo.jpg" alt="Kickstart Logo">
+        <p style="font-weight: bold;font-size: 20px;">Our mission:</p>
+          <p>Empower individuals to find their passion for volunteering.</p>
+          <p>Connect volunteers with organizations that need their skills and experience.</p>
+          <p>Promote a culture of service and giving back to the community.</p>
+    </section>
+
+    <br>
+    <br>
+    <section class="centered-text" id="opportunities">
+      <h2 style="font-weight: bold;">Featured Opportunities</h2>
+      <br>
+      <article>
+        <figcaption style="text-align: left; padding-left: 100px;"> <h3>Mentoring Youth</h3></figcaption>
+        <div class="image-container" style="margin-top: -50px; margin-bottom: -100px; margin-right: 150px;">
+            <img src="https://media.istockphoto.com/id/1334472503/photo/indian-ceo-mentor-leader-talking-to-female-trainee-using-laptop-at-meeting.jpg?s=612x612&w=0&k=20&c=RypRc4QwkdD-ke1kY5dpBfiGpD2mQNFrXwNJj1W-wEo=" alt="Image 1" style= "height:auto; width:400px;">
+            <p style=" margin-top: 100px; font-size: large; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif; font-size: 30;">Join us for a fun-filled day guiding and inspiring the younger generations!</p>
+        </div>
+        </article>
+      <br>
+      <br>
+      <article>
+        <h3 style="text-align: left; padding-left: 100px;">Planning Event</h3>
+        <div class="image-container" style="margin-top: -50px; margin-bottom: -100px; margin-right: 200px;">
+          <img src="https://media.istockphoto.com/id/1334810623/photo/business-team-discussing-together-during-meeting-at-office-colleagues-workshopping-business.jpg?s=612x612&w=0&k=20&c=TTKwQqDtNKmnXqfCztty-g_GGhCmnNR6bh08-IHDGKk=" alt="Image of volunteer reading to children at library" style= "height:auto; width:400px;">
+          <p style=" margin-top: 100px; font-size: large; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif ; font-size: 30;">Assist in planning and organizing various events for the community.</p>
+        </div>
+      </article>
+      </section>
+    <br>
+    <br>
+    <br>
+    <section class="centered-text">
+      <h2>Ready to Help?</h2>
+      <br>
+      <p style="align-text: center">Find the perfect volunteer opportunity for you and make a difference today!</p>
+      <br>
+      <a href="signup.html" class="signup-button">Sign Up Now!</a>
+    </section>
+    <br>
+    <br>
+</main>
+
+<footer class="centered-text">
+    <p>&copy; 2024 VOLMATCH</p>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
